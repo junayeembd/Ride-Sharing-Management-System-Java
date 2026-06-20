@@ -65,6 +65,20 @@ Project Setup Completed ✅
 
 🚧 Development in Progress
 
+## Development Timeline
+
+- [x] Project Setup
+- [x] GitHub Integration
+- [x] Project Structure Creation
+- [ ] Person Class
+- [ ] User Module
+- [ ] Driver Module
+- [ ] Admin Module
+- [ ] Vehicle Module
+- [ ] Ride Management
+- [ ] Payment System
+- [ ] Rating System
+
 ## Future Implementation
 
 - GUI Development
