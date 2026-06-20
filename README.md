@@ -56,6 +56,7 @@ src
 ## Current Status
 
 Project Setup Completed ✅
+🚧 Development in Progress
 
 ## Future Implementation
 
