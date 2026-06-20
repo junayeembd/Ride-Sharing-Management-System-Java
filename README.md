@@ -46,11 +46,17 @@ The system allows users to book rides, drivers to manage ride requests and admin
 
 ## Project Structure
 src
+
 │
+
 ├── model
+
 ├── service
+
 ├── database
+
 ├── ui
+
 └── Main.java
 
 ## Current Status
