@@ -89,5 +89,6 @@ Project Setup Completed ✅
 
 ## Author
 
-Nayeem
+Group Project lead by Nayeem
+
 Advanced Programming Course Project(Basic)
