@@ -2,7 +2,7 @@ package ui;
 
 import model.Ride;
 import service.RideManager;
-
+import service.LoginManager;
 import javax.swing.*;
 
 public class RideHistoryPage {
@@ -38,18 +38,20 @@ public class RideHistoryPage {
                 String rideHistory = "";
 
                 for (Ride ride : RideManager.rides) {
+                        if (LoginManager.currentUserEmail.equals(ride.getUserEmail())) {
 
-                        rideHistory += "Ride ID : " + ride.getRideId()
-                                        + "\nPickup : " + ride.getPickupLocation()
-                                        + "\nDestination : " + ride.getDestination()
-                                        + "\nVehicle : " + ride.getVehicleType()
-                                        + "\nDistance : " + ride.getDistance() + " KM"
-                                        + "\nFare : " + ride.getFare() + " BDT"
-                                        + "\nStatus : " + ride.getStatus()
-                                        + "\n-----------------------------\n";
+                                rideHistory += "Ride ID : " + ride.getRideId()
+                                                + "\nPickup : " + ride.getPickupLocation()
+                                                + "\nDestination : " + ride.getDestination()
+                                                + "\nVehicle : " + ride.getVehicleType()
+                                                + "\nDistance : " + ride.getDistance() + " KM"
+                                                + "\nFare : " + ride.getFare() + " BDT"
+                                                + "\nStatus : " + ride.getStatus()
+                                                + "\n-----------------------------\n";
+                        }
                 }
 
-                if (RideManager.rides.isEmpty()) {
+                if (rideHistory.isEmpty()) {
 
                         history.setText(
                                         "No ride history available.");

@@ -17,15 +17,37 @@ public class DriverDashboard {
 
         JButton rideRequest = new JButton("Ride Requests");
         rideRequest.setBounds(200, 100, 180, 40);
+        rideRequest.addActionListener(e -> {
+            frame.dispose();
+            RideRequestPage.main(null);
+        });
 
         JButton activeRide = new JButton("Active Ride");
         activeRide.setBounds(200, 160, 180, 40);
+        activeRide.addActionListener(e -> {
+
+            frame.dispose();
+
+            ActiveRidePage.main(null);
+        });
 
         JButton rideHistory = new JButton("Ride History");
         rideHistory.setBounds(200, 220, 180, 40);
+        rideHistory.addActionListener(e -> {
+
+            frame.dispose();
+
+            DriverRideHistoryPage.main(null);
+        });
 
         JButton earnings = new JButton("Earnings");
         earnings.setBounds(200, 280, 180, 40);
+        earnings.addActionListener(e -> {
+
+            frame.dispose();
+
+            EarningsPage.main(null);
+        });
 
         JButton logout = new JButton("Logout");
         logout.setBounds(200, 340, 180, 40);

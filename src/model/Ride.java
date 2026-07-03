@@ -9,6 +9,8 @@ public class Ride {
     private double distance;
     private double fare;
     private String status;
+    private String userEmail;
+    private String driverEmail;
 
     public Ride(int rideId,
             String pickupLocation,
@@ -25,15 +27,20 @@ public class Ride {
         this.distance = distance;
         this.fare = fare;
         this.status = status;
-    }
 
-    // Getters
+        this.userEmail = null;
+        this.driverEmail = null;
+    }
 
     public int getRideId() {
         return rideId;
     }
 
     public String getPickupLocation() {
+        return pickupLocation;
+    }
+
+    public String getPickup() {
         return pickupLocation;
     }
 
@@ -57,13 +64,42 @@ public class Ride {
         return status;
     }
 
-    // Display
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getDriverEmail() {
+        return driverEmail;
+    }
+
+    public void setDriverEmail(String driverEmail) {
+        this.driverEmail = driverEmail;
+    }
 
     public void displayRideInfo() {
 
         System.out.println("\n===== Ride Details =====");
 
         System.out.println("Ride ID: " + rideId);
+        System.out.println("User: " + userEmail);
+
+        if (driverEmail == null) {
+
+            System.out.println("Driver: Not Assigned");
+
+        } else {
+
+            System.out.println("Driver: " + driverEmail);
+        }
+
         System.out.println("Pickup: " + pickupLocation);
         System.out.println("Destination: " + destination);
         System.out.println("Vehicle: " + vehicleType);
@@ -71,5 +107,4 @@ public class Ride {
         System.out.println("Fare: " + fare + " BDT");
         System.out.println("Status: " + status);
     }
-
 }

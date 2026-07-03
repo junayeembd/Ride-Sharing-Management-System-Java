@@ -8,7 +8,7 @@ public class UserDashboard {
 
                 JFrame frame = new JFrame("User Dashboard");
 
-                frame.setSize(600, 400);
+                frame.setSize(600, 520);
                 frame.setLayout(null);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -24,7 +24,7 @@ public class UserDashboard {
 
                 bookRide.setBounds(
                                 200,
-                                100,
+                                80,
                                 150,
                                 40);
 
@@ -32,15 +32,21 @@ public class UserDashboard {
 
                 rental.setBounds(
                                 200,
-                                160,
+                                130,
                                 150,
                                 40);
+                rental.addActionListener(e -> {
+
+                        frame.dispose();
+
+                        RentalPage.main(null);
+                });
 
                 JButton payment = new JButton("Payment");
 
                 payment.setBounds(
                                 200,
-                                220,
+                                180,
                                 150,
                                 40);
                 payment.addActionListener(e -> {
@@ -52,17 +58,37 @@ public class UserDashboard {
 
                 rating.setBounds(
                                 200,
-                                280,
+                                230,
                                 150,
                                 40);
+                rating.addActionListener(e -> {
+
+                        frame.dispose();
+
+                        RatingPage.main(null);
+                });
                 JButton history = new JButton("Ride History");
-                history.setBounds(200, 340, 150, 40);
+                history.setBounds(200, 280, 150, 40);
                 history.addActionListener(e -> {
 
                         frame.dispose();
 
                         RideHistoryPage.main(null);
 
+                });
+
+                JButton rentalHistory = new JButton("Rental History");
+
+                rentalHistory.setBounds(
+                                200,
+                                330,
+                                150,
+                                40);
+                rentalHistory.addActionListener(e -> {
+
+                        frame.dispose();
+
+                        RentalHistoryPage.main(null);
                 });
 
                 JButton logout = new JButton("Logout");
@@ -80,6 +106,7 @@ public class UserDashboard {
                 frame.add(payment);
                 frame.add(rating);
                 frame.add(history);
+                frame.add(rentalHistory);
                 frame.add(logout);
 
                 frame.setVisible(true);

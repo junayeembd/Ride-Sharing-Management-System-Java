@@ -2,6 +2,7 @@ package ui;
 
 import model.*;
 import service.RideManager;
+import service.LoginManager;
 
 import javax.swing.*;
 
@@ -33,7 +34,11 @@ public class BookRidePage {
         JLabel vehicleLabel = new JLabel("Vehicle Type");
         vehicleLabel.setBounds(60, 180, 120, 30);
 
-        String[] vehicles = { "Bike", "CNG", "Private" };
+        String[] vehicles = {
+                "Bike",
+                "CNG",
+                "Private"
+        };
 
         JComboBox<String> vehicleBox = new JComboBox<>(vehicles);
 
@@ -46,53 +51,94 @@ public class BookRidePage {
         txtDistance.setBounds(220, 230, 250, 30);
 
         JLabel fareLabel = new JLabel("Fare : 0.00 BDT");
-        fareLabel.setBounds(220, 280, 200, 30);
+        fareLabel.setBounds(220, 280, 250, 30);
 
         JButton btnFare = new JButton("Calculate Fare");
+        btnFare.setBounds(150, 330, 150, 35);
 
-        btnFare.setBounds(220, 330, 150, 35);
+        JButton btnConfirm = new JButton("Confirm Ride");
+        btnConfirm.setBounds(320, 330, 150, 35);
+
+        JButton btnBack = new JButton("Back");
+        btnBack.setBounds(235, 390, 150, 35);
+
+        // Calculate Fare Event
         btnFare.addActionListener(e -> {
+
             try {
 
-                double distance = Double.parseDouble(txtDistance.getText());
+                double distance = Double.parseDouble(
+                        txtDistance.getText());
+
+                if (distance <= 0) {
+
+                    JOptionPane.showMessageDialog(
+                            frame,
+                            "Distance must be greater than 0!");
+
+                    return;
+                }
 
                 String vehicleType = (String) vehicleBox.getSelectedItem();
 
                 Vehicle vehicle;
 
                 if (vehicleType.equals("Bike")) {
+
                     vehicle = new Bike("BIKE-101");
+
                 } else if (vehicleType.equals("CNG")) {
+
                     vehicle = new CNG("CNG-202");
+
                 } else {
+
                     vehicle = new Private("CAR-303");
                 }
 
                 double fare = vehicle.calculateFare(distance);
-                fareLabel.setText("Fare : " + fare + " BDT");
-            }
 
-            catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(frame, "Please enter a valid distance!");
+                fareLabel.setText(
+                        "Fare : " + fare + " BDT");
+
+            } catch (NumberFormatException ex) {
+
+                JOptionPane.showMessageDialog(
+                        frame,
+                        "Please enter a valid distance!");
             }
         });
 
-        JButton btnConfirm = new JButton("Confirm Ride");
+        // Confirm Ride Event
         btnConfirm.addActionListener(e -> {
 
             try {
 
-                String pickup = txtPickup.getText();
-                String destination = txtDestination.getText();
+                String pickup = txtPickup.getText().trim();
+
+                String destination = txtDestination.getText().trim();
+
                 String vehicleType = (String) vehicleBox.getSelectedItem();
 
-                double distance = Double.parseDouble(txtDistance.getText());
-
-                if (pickup.isEmpty() || destination.isEmpty()) {
+                if (pickup.isEmpty()
+                        || destination.isEmpty()
+                        || txtDistance.getText().trim().isEmpty()) {
 
                     JOptionPane.showMessageDialog(
                             frame,
                             "Please fill all fields!");
+
+                    return;
+                }
+
+                double distance = Double.parseDouble(
+                        txtDistance.getText());
+
+                if (distance <= 0) {
+
+                    JOptionPane.showMessageDialog(
+                            frame,
+                            "Distance must be greater than 0!");
 
                     return;
                 }
@@ -110,14 +156,13 @@ public class BookRidePage {
                 } else {
 
                     vehicle = new Private("CAR-303");
-
                 }
 
                 double fare = vehicle.calculateFare(distance);
 
                 Ride ride = new Ride(
 
-                        1,
+                        RideManager.generateRideId(),
 
                         pickup,
 
@@ -129,51 +174,63 @@ public class BookRidePage {
 
                         fare,
 
-                        "Pending"
+                        "Pending");
 
-                );
+                ride.setUserEmail(
+                        LoginManager.currentUserEmail);
 
                 RideManager manager = new RideManager();
 
                 manager.bookRide(ride);
 
                 JOptionPane.showMessageDialog(
-
                         frame,
+                        "Ride Booked Successfully!\n\n"
+                                + "Ride ID : "
+                                + ride.getRideId()
+                                + "\nFare : "
+                                + ride.getFare()
+                                + " BDT");
 
-                        "Ride Booked Successfully!"
+                txtPickup.setText("");
+                txtDestination.setText("");
+                txtDistance.setText("");
 
-                );
+                fareLabel.setText(
+                        "Fare : 0.00 BDT");
 
-            }
-
-            catch (NumberFormatException ex) {
+            } catch (NumberFormatException ex) {
 
                 JOptionPane.showMessageDialog(
-
                         frame,
-
-                        "Please enter a valid distance!"
-
-                );
-
+                        "Please enter a valid distance!");
             }
-
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.setBounds(390, 390, 80, 35);
+        // Back Button Event
+        btnBack.addActionListener(e -> {
+
+            frame.dispose();
+
+            UserDashboard.main(null);
+        });
 
         frame.add(title);
+
         frame.add(pickupLabel);
         frame.add(txtPickup);
+
         frame.add(destinationLabel);
         frame.add(txtDestination);
+
         frame.add(vehicleLabel);
         frame.add(vehicleBox);
+
         frame.add(distanceLabel);
         frame.add(txtDistance);
+
         frame.add(fareLabel);
+
         frame.add(btnFare);
         frame.add(btnConfirm);
         frame.add(btnBack);

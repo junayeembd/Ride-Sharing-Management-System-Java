@@ -1,9 +1,12 @@
 package service;
 
 import model.User;
+import model.Admin;
 import model.Driver;
 
 public class LoginManager {
+    public static String currentDriverEmail;
+    public static String currentUserEmail;
 
     public boolean userLogin(String email, String password) {
 
@@ -11,7 +14,7 @@ public class LoginManager {
 
             if (user.getEmail().equals(email)
                     && user.getPassword().equals(password)) {
-
+                currentUserEmail = user.getEmail();
                 return true;
             }
         }
@@ -25,7 +28,7 @@ public class LoginManager {
 
             if (driver.getEmail().equals(email)
                     && driver.getPassword().equals(password)) {
-
+                currentDriverEmail = driver.getEmail();
                 return true;
             }
         }
@@ -33,9 +36,18 @@ public class LoginManager {
         return false;
     }
 
-    public boolean adminLogin(String adminId, String password) {
+    private final Admin admin = new Admin(
+            "System Admin",
+            "01700000000",
+            "admin@gomon.com",
+            "Dhaka",
+            "1234",
+            "admin");
 
-        return adminId.equals("admin")
-                && password.equals("1234");
+    public boolean adminLogin(String adminId,
+            String password) {
+
+        return admin.getAdminId().equals(adminId)
+                && admin.getPassword().equals(password);
     }
 }

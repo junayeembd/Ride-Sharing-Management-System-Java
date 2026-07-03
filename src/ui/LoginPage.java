@@ -113,11 +113,7 @@ public class LoginPage {
 
                 } else {
 
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "Admin Dashboard Coming Soon!");
-
-                    LoginPage.main(null);
+                    AdminDashboard.main(null);
                 }
 
             } else {
