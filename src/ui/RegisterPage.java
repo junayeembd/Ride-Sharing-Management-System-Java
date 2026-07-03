@@ -88,7 +88,7 @@ public class RegisterPage {
         btnBack.addActionListener(e -> {
 
             frame.dispose();
-            LoginPage.main(null);
+            RegisterSelectionPage.main(null);
 
         });
 

@@ -1,75 +1,83 @@
 package ui;
 
+import model.Ride;
+import service.RideManager;
+
 import javax.swing.*;
 
 public class RideHistoryPage {
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
-        JFrame frame = new JFrame("Ride History");
+                JFrame frame = new JFrame("Ride History");
 
-        frame.setSize(700, 500);
-        frame.setLayout(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(700, 500);
+                frame.setLayout(null);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel title = new JLabel("Ride History");
+                JLabel title = new JLabel("Ride History");
 
-        title.setBounds(
-                300,
-                20,
-                150,
-                30);
+                title.setBounds(
+                                300,
+                                20,
+                                150,
+                                30);
 
-        JTextArea history = new JTextArea();
+                JTextArea history = new JTextArea();
 
-        history.setEditable(false);
+                history.setEditable(false);
 
-        history.setText(
+                JScrollPane scroll = new JScrollPane(history);
 
-                "Ride ID : 1\n"
+                scroll.setBounds(
+                                50,
+                                70,
+                                580,
+                                280);
 
-                        + "Pickup : Uttara\n"
+                String rideHistory = "";
 
-                        + "Destination : Dhanmondi\n"
+                for (Ride ride : RideManager.rides) {
 
-                        + "Vehicle : Bike\n"
+                        rideHistory += "Ride ID : " + ride.getRideId()
+                                        + "\nPickup : " + ride.getPickupLocation()
+                                        + "\nDestination : " + ride.getDestination()
+                                        + "\nVehicle : " + ride.getVehicleType()
+                                        + "\nDistance : " + ride.getDistance() + " KM"
+                                        + "\nFare : " + ride.getFare() + " BDT"
+                                        + "\nStatus : " + ride.getStatus()
+                                        + "\n-----------------------------\n";
+                }
 
-                        + "Fare : 150 BDT\n"
+                if (RideManager.rides.isEmpty()) {
 
-                        + "Status : Completed"
+                        history.setText(
+                                        "No ride history available.");
 
-        );
+                } else {
 
-        JScrollPane scroll = new JScrollPane(history);
+                        history.setText(rideHistory);
+                }
 
-        scroll.setBounds(
-                50,
-                70,
-                580,
-                280);
+                JButton back = new JButton("Back");
 
-        JButton back = new JButton("Back");
+                back.setBounds(
+                                280,
+                                380,
+                                120,
+                                35);
 
-        back.setBounds(
-                280,
-                380,
-                120,
-                35);
+                back.addActionListener(e -> {
 
-        back.addActionListener(e -> {
+                        frame.dispose();
 
-            frame.dispose();
+                        UserDashboard.main(null);
+                });
 
-            UserDashboard.main(null);
+                frame.add(title);
+                frame.add(scroll);
+                frame.add(back);
 
-        });
-
-        frame.add(title);
-        frame.add(scroll);
-        frame.add(back);
-
-        frame.setVisible(true);
-
-    }
-
+                frame.setVisible(true);
+        }
 }
