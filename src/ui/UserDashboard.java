@@ -27,6 +27,12 @@ public class UserDashboard {
                                 80,
                                 150,
                                 40);
+                bookRide.addActionListener(e -> {
+
+                        frame.dispose();
+
+                        BookRidePage.main(null);
+                });
 
                 JButton rental = new JButton("Rental");
 

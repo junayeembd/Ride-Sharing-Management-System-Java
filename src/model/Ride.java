@@ -90,16 +90,7 @@ public class Ride {
 
         System.out.println("Ride ID: " + rideId);
         System.out.println("User: " + userEmail);
-
-        if (driverEmail == null) {
-
-            System.out.println("Driver: Not Assigned");
-
-        } else {
-
-            System.out.println("Driver: " + driverEmail);
-        }
-
+        System.out.println("Driver: " + driverEmail);
         System.out.println("Pickup: " + pickupLocation);
         System.out.println("Destination: " + destination);
         System.out.println("Vehicle: " + vehicleType);
