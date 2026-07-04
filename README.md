@@ -264,6 +264,8 @@ The project focuses on:
 - Event Handling
 - Java Swing GUI
 
+### Project status: Completed ✅
+
 ### 👨‍💻 Author
 
 Group Project led by Nayeem
