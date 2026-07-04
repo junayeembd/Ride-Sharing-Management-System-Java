@@ -3,7 +3,6 @@ package ui;
 import model.Ride;
 import service.LoginManager;
 import service.RideManager;
-
 import javax.swing.*;
 
 public class ActiveRidePage {
@@ -18,30 +17,18 @@ public class ActiveRidePage {
 
         JLabel title = new JLabel("Active Ride");
 
-        title.setBounds(
-                320,
-                20,
-                150,
-                30);
+        title.setBounds(320, 20, 150, 30);
 
         JTextArea rideArea = new JTextArea();
-
         rideArea.setEditable(false);
-
         JScrollPane scrollPane = new JScrollPane(rideArea);
 
-        scrollPane.setBounds(
-                50,
-                70,
-                630,
-                280);
-
+        scrollPane.setBounds(50, 70, 630, 280);
         String activeRides = "";
 
         for (Ride ride : RideManager.rides) {
 
-            if ((ride.getStatus().equals("Accepted")
-                    || ride.getStatus().equals("Started"))
+            if ((ride.getStatus().equals("Accepted") || ride.getStatus().equals("Started"))
                     && LoginManager.currentDriverEmail.equals(ride.getDriverEmail())) {
 
                 activeRides += "Ride ID : " + ride.getRideId()
@@ -66,116 +53,59 @@ public class ActiveRidePage {
         }
 
         JLabel rideIdLabel = new JLabel("Ride ID");
-
-        rideIdLabel.setBounds(
-                100,
-                380,
-                80,
-                30);
-
+        rideIdLabel.setBounds(100, 380, 80, 30);
         JTextField txtRideId = new JTextField();
-
-        txtRideId.setBounds(
-                170,
-                380,
-                100,
-                30);
+        txtRideId.setBounds(170, 380, 100, 30);
 
         JButton btnStart = new JButton("Start Ride");
-
-        btnStart.setBounds(
-                290,
-                380,
-                120,
-                35);
+        btnStart.setBounds(290, 380, 120, 35);
 
         JButton btnComplete = new JButton("Complete Ride");
-
-        btnComplete.setBounds(
-                430,
-                380,
-                140,
-                35);
+        btnComplete.setBounds(430, 380, 140, 35);
 
         JButton btnBack = new JButton("Back");
-
-        btnBack.setBounds(
-                300,
-                450,
-                120,
-                35);
-
+        btnBack.setBounds(300, 450, 120, 35);
         btnStart.addActionListener(e -> {
-
             try {
-
                 int rideId = Integer.parseInt(
                         txtRideId.getText());
-
                 boolean found = false;
-
                 for (Ride ride : RideManager.rides) {
-
-                    if (ride.getRideId() == rideId
-                            && ride.getStatus().equals("Accepted")
+                    if (ride.getRideId() == rideId && ride.getStatus().equals("Accepted")
                             && LoginManager.currentDriverEmail.equals(ride.getDriverEmail())) {
 
                         ride.setStatus("Started");
-
                         found = true;
-
-                        JOptionPane.showMessageDialog(
-                                frame,
-                                "Ride Started Successfully!");
-
+                        JOptionPane.showMessageDialog(frame, "Ride Started Successfully!");
                         frame.dispose();
-
                         ActiveRidePage.main(null);
 
                         break;
                     }
                 }
-
                 if (!found) {
-
-                    JOptionPane.showMessageDialog(
-                            frame,
-                            "Accepted Ride Not Found!");
+                    JOptionPane.showMessageDialog(frame, "Accepted Ride Not Found!");
                 }
 
             } catch (NumberFormatException ex) {
-
-                JOptionPane.showMessageDialog(
-                        frame,
-                        "Please enter a valid Ride ID!");
+                JOptionPane.showMessageDialog(frame, "Please enter a valid Ride ID!");
             }
         });
 
         btnComplete.addActionListener(e -> {
 
             try {
-
-                int rideId = Integer.parseInt(
-                        txtRideId.getText());
-
+                int rideId = Integer.parseInt(txtRideId.getText());
                 boolean found = false;
-
                 for (Ride ride : RideManager.rides) {
 
-                    if (ride.getRideId() == rideId
-                            && ride.getStatus().equals("Started")
+                    if (ride.getRideId() == rideId && ride.getStatus().equals("Started")
                             && LoginManager.currentDriverEmail.equals(ride.getDriverEmail())) {
 
                         ride.setStatus("Completed");
-
                         found = true;
-
-                        JOptionPane.showMessageDialog(
-                                frame,
-                                "Ride Completed Successfully!");
-
+                        JOptionPane.showMessageDialog(frame, "Ride Completed Successfully!");
                         frame.dispose();
-
                         ActiveRidePage.main(null);
 
                         break;
@@ -184,37 +114,28 @@ public class ActiveRidePage {
 
                 if (!found) {
 
-                    JOptionPane.showMessageDialog(
-                            frame,
-                            "Started Ride Not Found!");
+                    JOptionPane.showMessageDialog(frame, "Started Ride Not Found!");
                 }
 
             } catch (NumberFormatException ex) {
 
-                JOptionPane.showMessageDialog(
-                        frame,
-                        "Please enter a valid Ride ID!");
+                JOptionPane.showMessageDialog(frame, "Please enter a valid Ride ID!");
             }
         });
 
         btnBack.addActionListener(e -> {
 
             frame.dispose();
-
             DriverDashboard.main(null);
         });
 
         frame.add(title);
-
         frame.add(scrollPane);
-
         frame.add(rideIdLabel);
         frame.add(txtRideId);
-
         frame.add(btnStart);
         frame.add(btnComplete);
         frame.add(btnBack);
-
         frame.setVisible(true);
     }
 }

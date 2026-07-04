@@ -12,13 +12,11 @@ public class LoginManager {
 
         for (User user : RegisterManager.users) {
 
-            if (user.getEmail().equals(email)
-                    && user.getPassword().equals(password)) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 currentUserEmail = user.getEmail();
                 return true;
             }
         }
-
         return false;
     }
 
@@ -26,28 +24,22 @@ public class LoginManager {
 
         for (Driver driver : RegisterManager.drivers) {
 
-            if (driver.getEmail().equals(email)
-                    && driver.getPassword().equals(password)) {
+            if (driver.getEmail().equals(email) && driver.getPassword().equals(password)) {
                 currentDriverEmail = driver.getEmail();
                 return true;
             }
         }
-
         return false;
     }
 
-    private final Admin admin = new Admin(
-            "System Admin",
-            "01700000000",
-            "admin@gomon.com",
+    private final Admin admin = new Admin("System Admin",
+            "01715432456",
+            "admin@gmail.com",
             "Dhaka",
             "1234",
             "admin");
 
-    public boolean adminLogin(String adminId,
-            String password) {
-
-        return admin.getAdminId().equals(adminId)
-                && admin.getPassword().equals(password);
+    public boolean adminLogin(String adminId, String password) {
+        return admin.getAdminId().equals(adminId) && admin.getPassword().equals(password);
     }
 }

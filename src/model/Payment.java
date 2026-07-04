@@ -1,7 +1,6 @@
 package model;
 
 public class Payment {
-
     private int paymentId;
     private int rideId;
     private String userEmail;
@@ -9,13 +8,8 @@ public class Payment {
     private String paymentMethod;
     private String paymentStatus;
 
-    public Payment(int paymentId,
-            int rideId,
-            String userEmail,
-            double amount,
-            String paymentMethod,
+    public Payment(int paymentId, int rideId, String userEmail, double amount, String paymentMethod,
             String paymentStatus) {
-
         this.paymentId = paymentId;
         this.rideId = rideId;
         this.userEmail = userEmail;

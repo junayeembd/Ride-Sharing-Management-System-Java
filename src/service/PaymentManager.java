@@ -1,13 +1,11 @@
 package service;
 
 import model.Payment;
-
 import java.util.ArrayList;
 
 public class PaymentManager {
 
     public static ArrayList<Payment> payments = new ArrayList<>();
-
     private static int nextPaymentId = 1;
 
     public static int generatePaymentId() {
@@ -18,10 +16,7 @@ public class PaymentManager {
     public void makePayment(Payment payment) {
 
         payments.add(payment);
-
-        System.out.println(
-                "Payment Successful!");
-
+        System.out.println("Payment Successful!");
         payment.displayPaymentInfo();
     }
 
@@ -29,13 +24,11 @@ public class PaymentManager {
 
         for (Payment payment : payments) {
 
-            if (payment.getRideId() == rideId
-                    && payment.getPaymentStatus().equals("Paid")) {
+            if (payment.getRideId() == rideId && payment.getPaymentStatus().equals("Paid")) {
 
                 return true;
             }
         }
-
         return false;
     }
 }

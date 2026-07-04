@@ -1,7 +1,6 @@
 package model;
 
 public abstract class Vehicle {
-
     protected String vehicleNumber;
     protected String vehicleType;
 

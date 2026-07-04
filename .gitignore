@@ -25,3 +25,14 @@ replay_pid*
 
 *.class
 *.env
+*.class
+
+bin/
+out/
+target/
+
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db

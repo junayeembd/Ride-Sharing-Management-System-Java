@@ -3,11 +3,9 @@ package ui;
 import javax.swing.*;
 
 public class DriverDashboard {
-
     public static void main(String[] args) {
 
         JFrame frame = new JFrame("Driver Dashboard");
-
         frame.setSize(600, 500);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,37 +23,28 @@ public class DriverDashboard {
         JButton activeRide = new JButton("Active Ride");
         activeRide.setBounds(200, 160, 180, 40);
         activeRide.addActionListener(e -> {
-
             frame.dispose();
-
             ActiveRidePage.main(null);
         });
 
         JButton rideHistory = new JButton("Ride History");
         rideHistory.setBounds(200, 220, 180, 40);
         rideHistory.addActionListener(e -> {
-
             frame.dispose();
-
             DriverRideHistoryPage.main(null);
         });
 
         JButton earnings = new JButton("Earnings");
         earnings.setBounds(200, 280, 180, 40);
         earnings.addActionListener(e -> {
-
             frame.dispose();
-
             EarningsPage.main(null);
         });
 
         JButton logout = new JButton("Logout");
         logout.setBounds(200, 340, 180, 40);
-
         logout.addActionListener(e -> {
-
             frame.dispose();
-
             LoginPage.main(null);
         });
 
@@ -65,7 +54,6 @@ public class DriverDashboard {
         frame.add(rideHistory);
         frame.add(earnings);
         frame.add(logout);
-
         frame.setVisible(true);
     }
 }

@@ -5,9 +5,7 @@ import javax.swing.*;
 public class RegisterSelectionPage {
 
     public static void main(String[] args) {
-
         JFrame frame = new JFrame("Registration");
-
         frame.setSize(500, 400);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,23 +23,17 @@ public class RegisterSelectionPage {
         btnBack.setBounds(190, 260, 120, 40);
 
         btnUser.addActionListener(e -> {
-
             frame.dispose();
-
             RegisterPage.main(null);
         });
 
         btnDriver.addActionListener(e -> {
-
             frame.dispose();
-
             DriverRegisterPage.main(null);
         });
 
         btnBack.addActionListener(e -> {
-
             frame.dispose();
-
             LoginPage.main(null);
         });
 
@@ -49,7 +41,6 @@ public class RegisterSelectionPage {
         frame.add(btnUser);
         frame.add(btnDriver);
         frame.add(btnBack);
-
         frame.setVisible(true);
     }
 }

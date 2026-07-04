@@ -5,9 +5,7 @@ import model.Rating;
 import java.util.ArrayList;
 
 public class RatingManager {
-
     public static ArrayList<Rating> ratings = new ArrayList<>();
-
     private static int nextRatingId = 1;
 
     public static int generateRatingId() {
@@ -18,10 +16,7 @@ public class RatingManager {
     public void addRating(Rating rating) {
 
         ratings.add(rating);
-
-        System.out.println(
-                "Rating Submitted Successfully!");
-
+        System.out.println("Rating Submitted Successfully!");
         rating.displayRating();
     }
 
@@ -34,7 +29,6 @@ public class RatingManager {
                 return true;
             }
         }
-
         return false;
     }
 }

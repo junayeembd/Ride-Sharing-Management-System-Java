@@ -1,7 +1,6 @@
 package model;
 
 public class CNG extends Vehicle {
-
     public CNG(String vehicleNumber) {
         super(vehicleNumber, "CNG");
     }

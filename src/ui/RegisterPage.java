@@ -1,16 +1,13 @@
 package ui;
 
 import javax.swing.*;
-
 import model.User;
 import service.RegisterManager;
 
 public class RegisterPage {
-
     public static void main(String[] args) {
 
-        JFrame frame = new JFrame("GOMON Register");
-
+        JFrame frame = new JFrame("Register Form");
         frame.setSize(600, 550);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,55 +63,42 @@ public class RegisterPage {
             String phone = txtPhone.getText();
             String email = txtEmail.getText();
             String address = txtAddress.getText();
-
             String password = String.valueOf(txtPassword.getPassword());
             String confirmPassword = String.valueOf(txtConfirm.getPassword());
 
             if (!password.equals(confirmPassword)) {
-
                 JOptionPane.showMessageDialog(frame, "Passwords do not match!");
-
                 return;
             }
 
             User user = new User(name, phone, email, address, password);
-
             RegisterManager manager = new RegisterManager();
             manager.registerUser(user);
-
             JOptionPane.showMessageDialog(frame, "Registration Successful!");
+            frame.dispose();
+            LoginPage.main(null);
         });
 
         btnBack.addActionListener(e -> {
-
             frame.dispose();
             RegisterSelectionPage.main(null);
-
         });
 
         frame.add(title);
-
         frame.add(nameLabel);
         frame.add(txtName);
-
         frame.add(phoneLabel);
         frame.add(txtPhone);
-
         frame.add(emailLabel);
         frame.add(txtEmail);
-
         frame.add(addressLabel);
         frame.add(txtAddress);
-
         frame.add(passLabel);
         frame.add(txtPassword);
-
         frame.add(confirmLabel);
         frame.add(txtConfirm);
-
         frame.add(btnRegister);
         frame.add(btnBack);
-
         frame.setVisible(true);
     }
 

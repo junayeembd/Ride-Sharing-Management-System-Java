@@ -8,16 +8,11 @@ public class Rental {
     private int hours;
     private double rentalFare;
 
-    public Rental(int rentalId,
-            String userEmail,
-            String vehicleType,
-            int hours) {
-
+    public Rental(int rentalId, String userEmail, String vehicleType, int hours) {
         this.rentalId = rentalId;
         this.userEmail = userEmail;
         this.vehicleType = vehicleType;
         this.hours = hours;
-
         this.rentalFare = calculateRentalFare();
     }
 
@@ -46,39 +41,22 @@ public class Rental {
         double ratePerHour;
 
         if (vehicleType.equals("Bike")) {
-
             ratePerHour = 100;
-
         } else if (vehicleType.equals("CNG")) {
-
             ratePerHour = 200;
-
         } else {
-
             ratePerHour = 500;
         }
-
         return hours * ratePerHour;
     }
 
     public void displayRentalInfo() {
 
-        System.out.println(
-                "\n===== Rental Details =====");
-
-        System.out.println(
-                "Rental ID: " + rentalId);
-
-        System.out.println(
-                "User: " + userEmail);
-
-        System.out.println(
-                "Vehicle: " + vehicleType);
-
-        System.out.println(
-                "Hours: " + hours);
-
-        System.out.println(
-                "Fare: " + rentalFare + " BDT");
+        System.out.println("\n===== Rental Details =====");
+        System.out.println("Rental ID: " + rentalId);
+        System.out.println("User: " + userEmail);
+        System.out.println("Vehicle: " + vehicleType);
+        System.out.println("Hours: " + hours);
+        System.out.println("Fare: " + rentalFare + " BDT");
     }
 }
